@@ -43,5 +43,12 @@ Follow these steps to run the project locally:
    ```bash
    git clone https://github.com/samiwazni/FinnishOilProductsPricesANDTravelCostCalculator.git
    cd FinnishOilProductsPricesANDTravelCostCalculator
+   
+2. **Install Dependencies**:
+   ```bash
    npm install -> to install package and any package dependencies
+
+3. **Run the Project**:
+   ```bash
    npm run dev -> This command will run the server and the client at the same time
+
