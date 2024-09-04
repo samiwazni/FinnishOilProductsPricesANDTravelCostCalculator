@@ -113,27 +113,6 @@ const Form = () => {
           />
         </div>
 
-        {/* Fuel Type Selection */}
-        <div>
-          <label
-            htmlFor="fuel_type"
-            className="block text-sm font-medium text-gray-400 mb-1"
-          >
-            Fuel Type
-          </label>
-          <select
-            id="fuel_type"
-            name="fuel_type"
-            value={fuelType}
-            onChange={(e) => setFuelType(e.target.value)}
-            className="mt-1 block w-full p-2 bg-gray-800 border border-gray-700 rounded-md text-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="4">95E10</option>
-            <option value="5">98E</option>
-            <option value="6">E10</option>
-          </select>
-        </div>
-
         {/* Submit Button */}
         <button
           type="submit"

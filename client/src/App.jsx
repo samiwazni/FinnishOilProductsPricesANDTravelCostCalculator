@@ -4,6 +4,7 @@ import Form from './components/Form';
 import LoadData from './components/LoadData';
 import Nav from './components/Nav';
 import './App.css';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/calculateconsumption" element={<Form />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 };
