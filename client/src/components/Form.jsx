@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const Form = () => {
-  const [language, setLanguage] = useState("1");
   const [distance, setDistance] = useState("");
   const [fuelUsed, setFuelUsed] = useState("");
   const [fuelConsumption, setFuelConsumption] = useState("");
@@ -32,16 +31,17 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center min-h-screen">
       <form
         onSubmit={handleSubmit}
-        className="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg space-y-6 text-gray-300"
+        className="max-w-4xl w-full p-6 bg-gray-900 rounded-lg shadow-lg text-gray-300"
       >
+        <h1 className="text-left text-3xl mb-8">Calculate fuel consumption</h1>
         {/* Distance Traveled Field */}
         <div>
           <label
             htmlFor="distance"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium text-gray-400 mb-1 mt-3 text-left "
           >
             Distance traveled (km)
           </label>
@@ -60,7 +60,7 @@ const Form = () => {
         <div>
           <label
             htmlFor="fuel_used"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium text-gray-400 mb-1 mt-3 text-left"
           >
             Fuel used (L)
           </label>
@@ -79,7 +79,7 @@ const Form = () => {
         <div>
           <label
             htmlFor="fuel_consumption"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium text-gray-400 mb-1 mt-3 text-left"
           >
             Fuel consumption (L/100 km)
           </label>
@@ -98,7 +98,7 @@ const Form = () => {
         <div>
           <label
             htmlFor="fuel_economy"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium text-gray-400 mb-1 mt-3 text-left"
           >
             Fuel economy (km/L)
           </label>
