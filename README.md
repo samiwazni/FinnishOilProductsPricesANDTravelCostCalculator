@@ -42,6 +42,7 @@ Follow these steps to run the project locally:
 
    ```bash
    git clone https://github.com/samiwazni/FinnishOilProductsPricesANDTravelCostCalculator.git
+   ```
    cd FinnishOilProductsPricesANDTravelCostCalculator
    
 2. **Install Dependencies**:
