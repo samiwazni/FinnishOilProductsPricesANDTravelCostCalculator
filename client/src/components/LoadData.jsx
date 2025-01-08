@@ -44,7 +44,7 @@ const LoadData = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="max-w-4xl w-full p-6 bg-gray-900 rounded-lg shadow-lg text-gray-300">
-        <h1 className="text-2xl font-semibold mb-6 text-white text-center">
+        <h1 className="text-2xl font-semibold mb-6 text-white text-left">
           Live Finnish Oil Products Prices
         </h1>
 
@@ -52,7 +52,7 @@ const LoadData = () => {
         <div className="mb-4">
           <label
             htmlFor="city"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block miw-full text-sm font-medium text-gray-400 mb-1 text-left"
           >
             Select a City
           </label>
@@ -90,7 +90,7 @@ const LoadData = () => {
                   fill="currentFill"
                 />
               </svg>
-              <span class="sr-only">Loading...</span>
+              <span class="sr-only">Loading data...</span>
             </div>
           </div>
         ) : cityData.length === 0 ? (
@@ -103,10 +103,10 @@ const LoadData = () => {
               <thead className="bg-gray-800">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Asema
+                    Station
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Päivämäärä
+                    Date
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     95E10
