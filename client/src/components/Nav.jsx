@@ -12,7 +12,7 @@ const Nav = ({ toggleDarkMode, darkMode }) => {
               to="/"
               className="text-2xl font-bold text-gray-900 dark:text-white"
             >
-              TCC
+              FOTC
             </Link>
           </div>
 
