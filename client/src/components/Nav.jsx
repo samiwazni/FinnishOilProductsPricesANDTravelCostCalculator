@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = ({ toggleDarkMode, darkMode }) => {
   return (
@@ -7,25 +8,28 @@ const Nav = ({ toggleDarkMode, darkMode }) => {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="text-2xl font-bold text-gray-900 dark:text-white">
+            <Link
+              to="/"
+              className="text-2xl font-bold text-gray-900 dark:text-white"
+            >
               TCC
-            </a>
+            </Link>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex space-x-8">
-            <a
-              href="tabel"
+            <Link
+              to="/tabel"
               className="text-gray-900 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium"
             >
               Finnish Oil Products Prices
-            </a>
-            <a
-              href="calculateconsumption"
+            </Link>
+            <Link
+              to="/calculateconsumption"
               className="text-gray-900 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium"
             >
               Calculate Consumption
-            </a>
+            </Link>
           </div>
 
           {/* Theme Toggle Button */}
