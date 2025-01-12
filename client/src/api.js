@@ -1,6 +1,6 @@
-const API_URL = 'http://localhost:5000/api/fuelprices'; // URL for your backend API
+const API_URL = 'http://localhost:5000/api/fuelprices'; // URL -> Backend API
 
-// Function to fetch fuel prices and the last update timestamp from the backend
+// Function to fetch fuel prices and the last update timestamp
 export const fetchFuelData = async () => {
   try {
     const response = await fetch(API_URL);
