@@ -1,8 +1,11 @@
-const db = require('../database.cjs'); 
+/*  File name: cityDataModel.cjs
+    Desc: This is the city data model file
+*/
+const db = require("../database.cjs");
 
 // Clear data for a city
 const clearCityData = (cityName) => {
-  const stmt = db.prepare('DELETE FROM city_data WHERE cityName = ?');
+  const stmt = db.prepare("DELETE FROM city_data WHERE cityName = ?");
   stmt.run(cityName);
 };
 
@@ -28,7 +31,7 @@ const saveCityData = (cityName, cityData) => {
 
 // Fetch data for a city
 const getCityData = (cityName) => {
-  const stmt = db.prepare('SELECT * FROM city_data WHERE cityName = ?');
+  const stmt = db.prepare("SELECT * FROM city_data WHERE cityName = ?");
   return stmt.all(cityName);
 };
 

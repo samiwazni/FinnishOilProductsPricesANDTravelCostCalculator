@@ -1,3 +1,6 @@
+/*  File name: scrape.cjs
+    Desc: This is the scrape file to load data
+*/
 const axios = require("axios");
 const cheerio = require("cheerio");
 const iconv = require("iconv-lite");
@@ -18,7 +21,10 @@ const scrapeCityValues = async () => {
       const cityName = $(element).text().trim();
 
       if (cityValue && cityValue !== "Valitse kaupunki/Tie") {
-        const encodedCityUrl = encodeURIComponent(cityValue).replace(/%20/g, "_");
+        const encodedCityUrl = encodeURIComponent(cityValue).replace(
+          /%20/g,
+          "_"
+        );
         cityValues.push({
           cityName,
           cityUrl: `https://www.polttoaine.net/${encodedCityUrl}`,
@@ -88,7 +94,9 @@ const updateCityData = async () => {
     }
 
     // Update the timestamp
-    const timestamp = new Date().toLocaleString("en-GB", { timeZone: "Europe/Helsinki" });
+    const timestamp = new Date().toLocaleString("en-GB", {
+      timeZone: "Europe/Helsinki",
+    });
     db.prepare("UPDATE updates SET timestamp = ? WHERE id = 1").run(timestamp);
 
     console.log("Database successfully updated:", timestamp);
