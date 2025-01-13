@@ -1,5 +1,5 @@
 /*  File name: cityValuesScraper.cjs
-    Desc: This is the city values scrape
+    Desc: This is the city values scrape file
 */
 const axios = require("axios");
 const cheerio = require("cheerio");
