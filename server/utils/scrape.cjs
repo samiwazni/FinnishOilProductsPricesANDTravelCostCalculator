@@ -52,13 +52,13 @@ const scrapeCityData = async (cityUrl) => {
 
     const cityData = [];
     $("table tbody tr").each((_, element) => {
-      const station = $(element).find("td:nth-child(1)").text().trim();
       const date = $(element).find("td:nth-child(2)").text().trim();
-      const fuelType = $(element).find("td:nth-child(4)").text().trim();
-      const price = $(element).find("td:nth-child(5)").text().trim();
+      const fuel95E10 = $(element).find("td:nth-child(3)").text().trim();
+      const fuel98E = $(element).find("td:nth-child(4)").text().trim();
+      const diesel = $(element).find("td:nth-child(5)").text().trim();
 
-      if (station && date && fuelType && price) {
-        cityData.push({ station, date, fuelType, price });
+      if (date && (fuel95E10 || fuel98E || diesel)) {
+        cityData.push({ date, fuel95E10, fuel98E, diesel });
       }
     });
 
@@ -89,8 +89,8 @@ const updateCityData = async () => {
     const cityValues = await scrapeCityValues();
 
     const insertStmt = db.prepare(`
-      INSERT INTO city_data (cityName, station, date, fuelType, price)
-      VALUES (@cityName, @station, @date, @fuelType, @price)
+      INSERT INTO city_data (cityName, date, fuel95E10, fuel98E, diesel)
+      VALUES (@cityName, @date, @fuel95E10, @fuel98E, @diesel)
     `);
 
     for (const { cityName, cityUrl } of cityValues) {
@@ -99,10 +99,10 @@ const updateCityData = async () => {
       for (const data of cityData) {
         insertStmt.run({
           cityName,
-          station: data.station,
           date: data.date,
-          fuelType: data.fuelType,
-          price: data.price,
+          fuel95E10: data.fuel95E10 || "N/A",
+          fuel98E: data.fuel98E || "N/A",
+          diesel: data.diesel || "N/A",
         });
       }
     }
