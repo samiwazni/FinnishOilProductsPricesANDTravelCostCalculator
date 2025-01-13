@@ -36,7 +36,9 @@ const LoadData = () => {
   // Filter data for the selected city
   const filterCityData = () => {
     if (selectedCity) {
-      const filteredData = data.filter((item) => item.cityName === selectedCity);
+      const filteredData = data.filter(
+        (item) => item.cityName === selectedCity
+      );
       setCityData(filteredData);
     }
   };
@@ -127,7 +129,7 @@ const LoadData = () => {
                 {cityData.map((item, index) => (
                   <tr key={index} className="hover:bg-gray-800">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-300 text-left">
-                      {item.cityName}
+                      {item.station}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400 text-left">
                       {item.date}
