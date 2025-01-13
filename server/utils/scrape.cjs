@@ -6,11 +6,13 @@ const cheerio = require("cheerio");
 const iconv = require("iconv-lite");
 const db = require("../db/database.cjs");
 
+let isRunning = false; // Prevent overlapping executions
+
 // Function to scrape city values from the main page
 const scrapeCityValues = async () => {
   const url = "https://www.polttoaine.net/";
-
   try {
+    console.log("Scraping city values...");
     const { data } = await axios.get(url, { responseType: "arraybuffer" });
     const decodedData = iconv.decode(data, "ISO-8859-1");
     const $ = cheerio.load(decodedData);
@@ -32,6 +34,7 @@ const scrapeCityValues = async () => {
       }
     });
 
+    console.log("Scraped city values successfully.");
     return cityValues;
   } catch (error) {
     console.error("Error scraping city values:", error.message);
@@ -42,6 +45,7 @@ const scrapeCityValues = async () => {
 // Function to scrape data for a specific city
 const scrapeCityData = async (cityUrl) => {
   try {
+    console.log(`Scraping data for city: ${cityUrl}`);
     const { data } = await axios.get(cityUrl, { responseType: "arraybuffer" });
     const decodedData = iconv.decode(data, "ISO-8859-1");
     const $ = cheerio.load(decodedData);
@@ -58,6 +62,7 @@ const scrapeCityData = async (cityUrl) => {
       }
     });
 
+    console.log(`Scraped data for city: ${cityData.length} entries.`);
     return cityData;
   } catch (error) {
     console.error(`Error scraping city data (${cityUrl}):`, error.message);
@@ -67,8 +72,17 @@ const scrapeCityData = async (cityUrl) => {
 
 // Function to update the database
 const updateCityData = async () => {
+  if (isRunning) {
+    console.log("Update already in progress. Skipping this run.");
+    return;
+  }
+
+  isRunning = true;
+  console.log(`Starting updateCityData at ${new Date().toISOString()}`);
+
   try {
     // Clear old data
+    console.log("Clearing old data...");
     db.exec("DELETE FROM city_data");
 
     // Scrape all city values
@@ -99,14 +113,22 @@ const updateCityData = async () => {
     });
     db.prepare("UPDATE updates SET timestamp = ? WHERE id = 1").run(timestamp);
 
-    console.log("Database successfully updated:", timestamp);
+    console.log("Database updated successfully:", timestamp);
   } catch (error) {
     console.error("Error updating city data:", error.message);
+  } finally {
+    isRunning = false;
+    console.log("Finished updateCityData at", new Date().toISOString());
   }
 };
 
-// Set up periodic updates (every 1 hour)
-setInterval(updateCityData, 60 * 60 * 1000);
+// Use setTimeout instead of setInterval for better control
+const scheduleUpdate = () => {
+  setTimeout(async () => {
+    await updateCityData();
+    scheduleUpdate(); // Re-schedule after the current run completes
+  }, 60 * 60 * 1000); // 1 hour
+};
 
-// Run immediately on startup
-updateCityData();
+// Start the update loop
+scheduleUpdate();
