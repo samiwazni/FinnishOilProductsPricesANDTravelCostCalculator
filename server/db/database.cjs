@@ -13,6 +13,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS city_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     cityName TEXT,
+    station TEXT,
     date TEXT,
     fuel95E10 TEXT,
     fuel98E TEXT,
